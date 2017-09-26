@@ -1,0 +1,22 @@
+#+TITLE:README FILE
+#+AUTHOR: Novelli
+
+* malomescanski vzgibi
+** Features
+** Installation
+** Contribute
+** License
+   GPL 3.0 - duh!
+   lahko tudi aGPL 
+
+* bugs
+** NUJNO - ne bere fajlov
+   Izpiše samo prvi stavek, programček ob zagonu računalnika dejansko ne
+   pride do citata.
+
+   Diagnoza - rekel bi, da home še ni naložen. Torej je napaka v klicanju.
+   Moram ga klicat po tem, ko se vse skupaj naloži, torej z drugo aplikacijo.
+
+   Druga možnost bi bila, da vse prenesem nekam v /usr/bin
+
+   
