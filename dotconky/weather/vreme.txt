@@ -1,0 +1,20 @@
+${color A11A5D}${font Caviar Dreams:size=24}Ljubljana${font}
+${color FFFFFF} ${font Caviar Dreams:size=6} 2017-09-26 15:00:00${font}
+${color 29B030}${hr}
+${image ~/.conky/weather/img/p6.png -p 6,59 -s 60x60}${color A11A5D}${font Caviar Dreams:size=24}${offset 70}12.0 °C ${font}
+${color A11A5D}${font Caviar Dreams:size=12}Desc: ${color FFFFFF}broken clouds${font}
+${color A11A5D}${font Caviar Dreams:size=12}Wind: ${color FFFFFF}3.6 m/s${font}
+${color A11A5D}${font Caviar Dreams:size=12}Clouds: ${color FFFFFF}75 perc${font}
+${color A11A5D}${font Caviar Dreams:size=12}Pressure: ${color FFFFFF}1023 mbar${font}
+${color A11A5D}${font Caviar Dreams:size=12}Humidity: ${color FFFFFF}93 perc${font}
+${color 29B030}${hr}
+${font Caviar Dreams:size:14}${color 29B030}Sre ${image ~/.conky/weather/img/p8.png -p 40,195 -s 55x55}${color A11A5D}${font Caviar Dreams:size=22}${offset 70}12.8 °C ${font}
+${color 29B030}${hr}
+${font Caviar Dreams:size:14}${color 29B030}Cet ${image ~/.conky/weather/img/p8.png -p 40,239 -s 55x55}${color A11A5D}${font Caviar Dreams:size=22}${offset 70}12.9 °C ${font}
+${color 29B030}${hr}
+${font Caviar Dreams:size:14}${color 29B030}Pet ${image ~/.conky/weather/img/p1.png -p 40,283 -s 55x55}${color A11A5D}${font Caviar Dreams:size=22}${offset 70}12.0 °C ${font}
+${color 29B030}${hr}
+${font Caviar Dreams:size:14}${color 29B030}Sob ${image ~/.conky/weather/img/p8.png -p 40,327 -s 55x55}${color A11A5D}${font Caviar Dreams:size=22}${offset 70}13.3 °C ${font}
+${color 29B030}${hr}
+${font Caviar Dreams:size:14}${color 29B030}Ned ${image ~/.conky/weather/img/p8.png -p 40,371 -s 55x55}${color A11A5D}${font Caviar Dreams:size=22}${offset 70}13.3 °C ${font}
+${color 29B030}${hr}

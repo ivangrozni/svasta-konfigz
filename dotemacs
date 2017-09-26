@@ -1,0 +1,285 @@
+;;; package --- Summary:
+
+;;; Commentary:
+
+;;; Code:
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("org" . "http://orgmode.org/elpa/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
+(require 'package)
+(package-initialize)
+
+(set-face-attribute 'default nil :height 90)
+(require 'yasnippet)
+(add-to-list 'yas/root-directory "/home/len/.emacs.d/elpa/yasnippet-20150212.240")
+(yas/initialize)
+
+
+(require 'php-mode)
+(setq php-manual-path "~/.emacs.d/php/php-chunked-xhtml")
+(setq php-completion-file "~/.emacs.d/php/php-completion-file")
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+(setq web-mode-markup-indent-offset 4)
+(setq web-mode-css-indent-offset 4)
+(setq web-mode-code-indent-offset 4)
+(setq web-mode-indent-style 4)
+
+
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dcit/")
+(ac-config-default)
+
+(require 'php-auto-yasnippets)
+(setq php-auto-yasnippet-php-program "~/.emacs.d/php/Create-PHP-YASnippet.php")
+(define-key php-mode-map (kbd "C-c C-y" ) 'yas/create-php-snippet)
+(payas/ac-setup)
+
+(require 'emmet-mode)
+(require 'ac-emmet) ;; Not necessary if using ELPA package
+(add-hook 'sgml-mode-hook 'ac-emmet-html-setup)
+(add-hook 'css-mode-hook 'ac-emmet-css-setup)
+
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
+
+(setq web-mode-ac-sources-alist 
+      '(("php" . (ac-source-yasnippet ac-source-php-auto-yasnippets)) 
+	("html" . (ac-source-emmet-html-aliases ac-source-emmet-html-snippets))
+	("css" . (ac-source-css-property ac-source-emmet-css-snippets))))
+
+(add-hook 'web-mode-before-auto-complete-hooks 
+	  '(lambda () 
+	     (let ((web-mode-cur-language (web-mode-language-at-pos))) 
+	       (if (string= web-mode-cur-language "php") 
+		   (yas-activate-extra-mode 'php-mode) 
+		 (yas-deactivate-extra-mode 'php-mode)) 
+	       (if (string= web-mode-cur-language "css") 
+		   (setq emmet-use-css-transform t) 
+		 (setq emmet-use-css-transform nil)))))
+
+(setq-default indent-tabs-mode nil)
+
+(global-set-key (kbd "C-c C-s") 'ag)
+
+(require 'magit-gh-pulls)
+(add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls)
+(magit-push-remote-mode 1)
+(magit-auto-revert-mode -1)
+;;(setenv "GIT_ASKPASS" "git-gui--askpass")
+;;There are currently 4 bindings for pull requests:
+;;# g g --- refreshes the list of pull requests
+;;# g f --- fetches the commits associated with the pull request at point
+;;# g b --- helps you creating a topic branch from a review request
+;;# g m --- merges the PR on top of the current branch
+;;# g c --- creates a PR from the current branch
+
+
+;; Tole naj bi me resilo gadnih auto-save in backup fajlov v mapi, v katerim delam
+;; ampak ne dela...
+;;(setq backup-directory-alist
+;;      '((".*". , temporary-file-directory )))
+;;(setq auto-save-file-name-transforms
+;;      '((".*" , temporary-file-directory)))
+;; Poskus 2:
+;;(add-to-list 'backup-directory-alist
+;;	     (cons "." "~/.emacs.d/backups/" ))
+;;(setq tramp-backup-directory-alist backup-directory-alist)
+;;(add-to-list 'auto-save-file-name-transforms nil)
+;;(add-to-list 'tramp-auto-save-directory
+;;             (cons "." "~/.emacs.d/backups/" ))
+;; poskus 3:
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+
+;; org-mode
+(require 'org)
+;;(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+(global-set-key (kbd "C-c C-l") 'org-store-link)
+(global-set-key (kbd "C-c C-a") 'org-agenda)
+(global-set-key (kbd "C-c C-b") 'org-iswitchb)
+(setq org-log-done t)
+;; org2nikola
+;; (add-to-list 'load-path "~/.emacs.d/nikola")
+;; (require 'org2nikola)
+;; (setq org2nikola-output-root-directory "~/.config/nikola")
+
+(tool-bar-mode -1)
+
+;;(load-theme 'monokai t)
+;;(load-theme 'misterioso t) ;; tale mi je lepa...
+
+(require 'neotree)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#2d3743" "#ff4242" "#74af68" "#dbdb95" "#34cae2" "#008b8b" "#00ede1" "#e1e1e0"])
+ '(compilation-message-face (quote default))
+ '(custom-enabled-themes (quote (grandshell)))
+ '(custom-safe-themes
+   (quote
+    ("a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "f0d8af755039aa25cd0792ace9002ba885fd14ac8e8807388ab00ec84c9497d7" "e80932ca56b0f109f8545576531d3fc79487ca35a9a9693b62bf30d6d08c9aaf" default)))
+ '(fci-rule-color "#49483E")
+ '(highlight-changes-colors ("#FD5FF0" "#AE81FF"))
+ '(highlight-tail-colors
+   (("#49483E" . 0)
+    ("#67930F" . 20)
+    ("#349B8D" . 30)
+    ("#21889B" . 50)
+    ("#968B26" . 60)
+    ("#A45E0A" . 70)
+    ("#A41F99" . 85)
+    ("#49483E" . 100)))
+ '(magit-use-overlays nil)
+ '(transient-mark-mode nil)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; NOVI KEYBINDINGI - da bo lahko brisal nazaj 150630
+;; PA SE NA zivce mi gre trenutni terminal rxvt - ne dela my copy paste vredu...
+(global-set-key (kbd "C-?") 'help-command )
+(global-set-key (kbd "M-?") 'mark-paragraph )     ;; tale ne dela
+(global-set-key (kbd "C-h") 'delete-backward-char)
+(global-set-key (kbd "M-h") 'backward-kill-word ) ;; in tale tudi ne
+;; backword-kill-word mi ne dela, ampak kar mark-paragraph naredi... WTF!!!
+
+;; Izklopit hocem nadlezni alarm...
+(setq ring-bell-function 'ignore)
+
+;; ac-c-headers 150714 - nehal je delat autocomplete
+;;(add-hook 'c-mode-hook
+;;            (lambda ()
+;;              (add-to-list 'ac-sources 'ac-source-c-headers)
+;;              (add-to-list 'ac-sources 'ac-source-c-header-symbols t)))
+
+
+;; gnuplot-mode 150715
+;; (require 'gnuplot-mode)
+(defvar gnuplot-program "/usr/bin/gnuplot")
+(eval-after-load 'gnuplot-mode
+  '(add-hook 'gnuplot-mode-hook
+             (lambda ()
+               (flyspell-prog-mode)
+               (add-hook 'before-save-hook
+                         'whitespace-cleanup nil t)
+               )))
+;; flymake-shell 150720
+;; bo popravljalo napake, ko bom shell pisal?
+(require 'flymake-shell)
+(add-hook 'sh-set-shell-hook 'flymake-shell-load)
+;;flylisp installed 150720
+;;flymake oz flycheck installed 150720
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Dokumantacije za C
+(global-set-key  [f1] (lambda () (interactive) (manual-entry (current-word))))
+
+;; autocomplete pri org-modu - 151229
+;; https://github.com/aki2o/org-ac
+(require 'org-ac)
+(org-ac/config-default)
+
+;; org-babel
+(add-to-list 'load-path "~/.emacs.d/elpa")
+(add-to-list 'load-path "~/.emacs.d/ditaa")
+(setq org-ditaa-jar-path "~/.emacs.d/ditaa/ditaa0_9.jar") ;; tole še vedno ne dela ...
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (latex . t)
+   (ditaa . t)
+   (C . t)
+   (sh . t)
+   (awk . t)
+   (gnuplot . t)
+   (lisp . t)
+   (makefile . t)
+   (python . t)
+   (sed . t)
+   )
+ )
+;; (sed . t) - ne najde ob-sed.el
+;; lahko bi dodal se sql in sqlite, perl bo tudi treba dodati, seveda
+
+;; babel
+;; poveze se z google.translate.com in ti prevede stvari
+(autoload 'babel "babel"
+    "Use a web translation service to translate the message MSG." t)
+(autoload 'babel-region "babel"
+    "Use a web translation service to translate the current region." t)
+(autoload 'babel-as-string "babel"
+    "Use a web translation service to translate MSG, returning a string." t)
+(autoload 'babel-buffer "babel"
+  "Use a web translation service to translate the current buffer." t)
+
+;; oBARVANJE KODE v src blokih 150106
+(setq org-src-fontify-natively t)
+
+(transient-mark-mode 1)
+
+;; Fri Apr 15 12:03:21 CEST 2016
+;; recent files - rad bi, da bi bil ta buffer moj zacetni zaslon
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+
+(init-open-recentf)
+
+(add-to-list 'load-path "/usr/share/info/python.info")
+(require 'pydoc-info)
+
+
+;; Wed Nov  9 16:37:35 CET 2016
+;; instaliral paketa za emacs: emms in transcribe; in apt-get mpg321
+;; posnetek skace na zacetek, zato je neuporabno za transkripcija - hrosc
+
+;; drug mode: https://github.com/skeeto/transcription-mode
+(add-to-list 'load-path "~/.emacs.d/transcription-mode")
+;; (require 'transcription-mode)
+
+
+
+(provide '.emacs)
+;;; .emacs ends here

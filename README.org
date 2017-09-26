@@ -1,0 +1,85 @@
+#+AUTHOR: Lio Novelli
+#+TITLE: Svašta konfigz
+
+* Debian, fluxbox rendom configz
+
+** Emacs
+   dotemacs file from times before [[http://spacemacs.org/][spacemacs]].
+
+** conkeror
+   [[https://www.gnu.org/software/emacs/][Webbrowser]] that has similiar design philosophy as Emacs. *I'm
+   loving it!* It's written in js and so is it's rcfile.
+
+** Conky
+
+*** lua script
+    I found it somewhere on the internet and adjusted it a tiny
+    bit. It creates nice circles.
+
+*** weather
+    It gets weather prognosis from [[http://openweathermap.org/][openweathermap.org]] (with [[file:dotconky/weather/open_weather.py][python -
+    open_weather.py]]) and creates a conky config that nicely prints it
+    on the screen. With pictures of weather and four days prognosis.
+
+    It is easily adjustible (for different cities), but the best part
+    is, that if there is no internet connection and it therefore can
+    not get the weather report it says that the weather is sunny.
+
+**** todo - meteorology department from faculty of mathematic and physics
+     They have a really nice prognosis for Slovenia. With some
+     imagemagick I could make the background of graphs transparent and
+     print them on wallpaper with conky.
+     
+*** todo - orgmode
+    If I would start using orgmode for everyday notes and planing it
+    would be really nice to connect agenda file with conky!
+
+** zmalo
+   Simple bash script, that prints out random marxist quote. Quotes
+   are scapped from [[http://marxists.org][marxist.org]] and python scrapper is also
+   enclosed. Nothing greets you nicer than Lenin's advice. 
+
+** dotfluxbox
+   Configs for windowmanager [[http://fluxbox.org/][fluxbox]], which I used before [[https://i3wm.org/][i3]] came
+   along. Made some nice keyboard shortcuts so mice was undue.
+
+* Konfiguracije - Debian, fluxbox
+  
+** Emacs
+   dotemacs fajl izpred časov spacemacs-a.
+
+** Conkeror
+   [[https://www.conkeror.org][Super razširljiv spletni brskalnik]], zasnovan s podobno miselnostjo
+   kakor Emacs. Napisan je v java scriptu, v katerem se piše tudi
+   rcdokument.
+
+** Conky
+
+*** lua skripta
+    Pobrano z neta; naredi lepe obročke.
+
+*** vreme
+    S spletne strani openweathermap pobere napoved za Ljubljano in jo
+    prikaže v conky-ju.
+
+**** TODO katedra za meteorologijo
+     Na katedri za meteorologijo FMF imajo zelo natančno vremensko
+     napoved in lepe grafe, ki bi jim lahko z imagemagick-om
+     spremenili ozadje v transparent in jih vrgli v conky-ja.
+
+*** TODO orgmode
+    Ako bi začel resno furat orgmode za vsakodnevno organizacijo bi
+    agendo lahko lepil v conky-ja.
+
+** zmalo
+   Preprosta skripta, ki izpiše naključen marksističen citat. Citati
+   so poskrepani iz marxists.org, priložen pa je tudi python
+   skreperček.
+
+   Skripta je primerna za zagon ob startapu - nič te ne pozdravi lepše
+   ob zagonu računalnika kakor ščepec dobrega starega Lenina.
+
+** dotfluxbox
+   Konfiguracije za meni ljubo namizje [[http://fluxbox.org/][fluxbox]], ki sem ga fural preden
+   ni mimo prišel [[https://i3wm.org/][i3]]. Z nekaj lepimi bližnjicami na tipkovnici je
+   miška postala skoraj odveč.

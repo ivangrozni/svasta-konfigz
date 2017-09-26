@@ -1,0 +1,60 @@
+# Conky settings #
+background no
+#update_interval 7200
+update_interval 3600
+#update_interval 10800
+#update_interval 43200
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+#imlib_cache_size 0
+
+temperature_unit celsius
+
+# Window specifications #
+
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 200 250
+maximum_width 250
+#maximum_width 200 #spremenil...
+
+alignment tl
+gap_x 35
+gap_y 55
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+# Text settings #
+use_xft yes
+xftfont Caviar Dreams:size=8
+xftalpha 0.5
+
+uppercase no
+
+temperature_unit celsius
+
+default_color FFFFFF
+
+
+TEXT
+${exec python /home/len/.conky/weather/open_weather.py} 
+${execp cat /home/len/.conky/weather/vreme.txt}
+
