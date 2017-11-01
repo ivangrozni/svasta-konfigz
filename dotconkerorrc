@@ -1,0 +1,98 @@
+/*
+  conkeror
+  - dodaj bližnjico C-SPC, ki ima isto funkcijo kot enter
+  - dodaj keybinding C-h, za backward kill char
+  - dodaj eno bližnjico za printanje
+  - dodaj osnovni direktorij za shranjevanje v tmp
+*/
+//define_webjump("hp", "/home/dka/my-home-page/index.html");
+define_webjump("print", "javascript:window.print()");
+
+url_completion_use_history = true; // druga opcija: http://conkeror.org/History
+
+require("new-tabs.js");
+
+define_webjump("archwiki", "https://wiki.archlinux.org/index.php?search=%s"); // arch wiki
+
+define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
+define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
+// ena fina zadeva je, da ne isce po zgodovini, ampak po bookmarkih
+
+// funkcija, ki odstrani tab-e, oziroma jih spet prikaze
+
+define_key(default_global_keymap, "k", "switch-to-buffer");
+//define_key(default_global_keymap, "C-w", "kill-current-buffer"); // to ze obstaja - bliznjica je q
+//define_key(content_buffer_normal_keymap, "k", "bookmark");
+//define_key(content_buffer_textarea_keymap, "M-<", "cmp_moveTop");
+//define_key(content_buffer_textarea_keymap, "M->", "cmp_moveBottom");
+
+// don't show clock
+remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+
+define_variable("firebug_url",
+    "http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js");
+
+function firebug (I) {
+    var doc = I.buffer.document;
+    var script = doc.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', firebug_url);
+    script.setAttribute('onload', 'firebug.init();');
+    doc.body.appendChild(script);
+}
+interactive("firebug", "open firebug lite", firebug);
+
+/*
+first to i-Search for the text you want to copy. Once you see the light grey highlight over the first part of what you'd like to select, press Return. You may then use the following keybindings to select text:
+
+C-B -- one char back C-F -- one char forward M-B -- one word back M-F -- one word forward
+
+C-P -- back one line C-N -- forward one line S-down -- forward one line
+
+Use M-w to copy the text to the clipboard. Use C-h b to see the full list of bindings.
+
+printanje: g javascript:window.print()
+*/
+
+define_webjump("archive.org", "http://www.archive.org/search.php?query=%s");
+define_webjump("dictionary","http://www.thefreedictionary.com/%s");
+define_webjump("trans", "http://translate.google.com/translate_t#auto|en|%s");
+define_webjump("unix-linux-stackexchange","http://unix.stackexchange.com/search?q=%s", $alternative="http://unix.stackexchange.com");
+define_webjump("stackoverflow","http://stackoverflow.com/search?q=%s", $alternative="http://stackoverflow.com");
+//define_webjump("libgen", "http://gen.lib.rus.ec/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def");
+
+define_webjump ("libgen", "http://libgen.io/search.php?req=%s&open=0&res=25&view=simple&phrase=1&column=def", $alternative = "http://libgen.io");
+
+define_webjump("clhs",
+               "http://www.xach.com/clhs?q=%s",
+               $alternative = "http://www.lispworks.com/documentation/HyperSpec/Front/index.htm");
+
+define_webjump("python", "http://docs.python.org/search.html?q=%s");
+define_webjump("python3", "http://docs.python.org/py3k/search.html?q=%s");
+
+define_webjump("tex-stackexchange","http://tex.stackexchange.com/search?q=%s", $alternative="http://tex.stackexchange.com");
+
+// webjump za archwiki in searx search engine
+define_webjump("searx", "https://searx.laquadrature.net/?q=%s&categories=general", $alternative="https://searx.laquadrature.net");
+//archwiki je itak ze
+
+define_webjump("clojuredocs", "https://clojuredocs.org/search?q=%s");
+define_webjump("thinkwiki", "http://www.thinkwiki.org/w/index.php?search=Category:%s&title=Special%3ASearch&go=Go");
+//define_webjump("libgen", "http://gen.lib.rus.ec/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def");
+define_webjump("github", "http://github.com/search?q=%s&type=Everything");
+define_webjump("emacswiki",
+               "http://www.google.com/cse?cx=004774160799092323420%3A6-ff2s0o6yi"+
+               "&q=%s&sa=Search&siteurl=emacswiki.org%2F",
+               $alternative="http://www.emacswiki.org/"); // emacswiki
+define_webjump("pons", "http://sl.pons.com/prevod?q=%s&l=ensl&in=&lf=en", $alternative="http://sl.pons.com");
+
+cwd = get_home_directory();
+cwd = make_file("/tmp");
+set_protocol_handler("magnet", find_file_in_path("transmission-gtk")); //odpre magnete s transmission
+//define_key(keymap, "C-space", "cmd_return");
+//define_key(content_buffer_select_keymap, "C-space", null, $fallthrough);
+//define_key(content_buffer_normal_keymap, "C-space", "enter");
+//define_key(content_buffer_select_keymap, "C-space", "follow", $browser_object = browser_object_focused_element);
+//define_key(keymap, "C-space", "follow", $browser_object = browser_object_focused_element);
+//define_key(content_buffer_select_keymap, "M-space", "cmd_return");
+
