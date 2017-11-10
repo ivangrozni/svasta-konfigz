@@ -96,38 +96,10 @@ function ratings {
                 (( nr[0] += 1 ))
             else
                 rat=$(echo $res | egrep -o "[[:digit:]]")
-                if [ $rat -eq 1 ]; then
-                    (( nr[1] += 1 ))
-                    imgsnames[$cnt]=$i
-                    imgsrates[$cnt]=$rat
-                    (( cnt += 1 ))
-                elif [ $rat -eq 2 ]; then
-                        (( nr[2] += 1 ))
-                        imgsnames[$cnt]=$i
-                        imgsrates[$cnt]=$rat
-                        (( cnt += 1 ))
-                elif [ $rat -eq 3 ]; then
-                        (( nr[3] += 1 ))
-                        imgsnames[$cnt]=$i
-                        imgsrates[$cnt]=$rat
-                        (( cnt += 1 ))
-                elif [ $rat -eq 4 ]; then
-                        (( nr[4] += 1 ))
-                        imgsnames[$cnt]=$i
-                        imgsrates[$cnt]=$rat
-                        (( cnt += 1 ))
-                elif [ $rat -eq 5 ]; then
-                        (( nr[5] += 1 ))
-                        imgsnames[$cnt]=$i
-                        imgsrates[$cnt]=$rat
-                        (( cnt += 1 ))
-                elif [ $rat -eq 0 ]; then
-                    (( nr[0] += 1 ))
-                    imgsnames[$cnt]=$i
-                    imgsrates[$cnt]=$rat
-                    (( cnt += 1 ))
+                (( nr[$rat] += 1 ))
+                imgsnames[$cnt]=$i
+                imgsrates[$cnt]=$rat
 
-                fi
             fi
         fi
     done
