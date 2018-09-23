@@ -1,0 +1,61 @@
+#+TITLE: About chunkwm config
+
+* Chunkwm
+  Chunkwm is a tiling window manager for osx. It lacks nice and intuitive
+  keybindings for actions.
+
+  It actually comes in 3 parts but two of them are configurable. ~.chunkwmrc~
+  holds general configuration such as border size and plugins. ~.skhdrc~ stores
+  the actual keybindings.
+
+** skhdrc
+
+   | action                                    | keybinding                    |
+   |-------------------------------------------+-------------------------------|
+   | Open terminal                             | ~cmd - return~                |
+   | Open browser                              | ~cmd + shift - return~        |
+   |-------------------------------------------+-------------------------------|
+   | Close focused window                      | ~alt + shift - q~             |
+   | Focus window                              | ~alt + shift - jkl;~          |
+   | Focus windos prev/next                    | ~cmd - jk~                    |
+   | Swap window                               | ~alt + ctrl + shift - jkl;~   |
+   | Move window                               | ~alt + ctrl - jkl;~           |
+   | Fast focus desktop                        | ~ctrl + shift - 123zxc~       |
+   | Send window to desktop                    | ~alt + shift - 123zxc~        |
+   | Send window to desktop and follow focus   | ~alt + ctrl + shift - 123zxc~ |
+   | Focus monitor                             | ~cmd + shift - 123zc~         |
+   | Send window to monitor, follow focus      | ~alt + cmd - 123zc~           |
+   | Create desktop, move window, follow focus | ~alt + ctrl + shift - n~      |
+   | Create desktop, follow focus              | ~ctrl + shift - n~            |
+   | Destroy desktop                           | ~ctrl + shift - q~            |
+   |-------------------------------------------+-------------------------------|
+   | Increase region size                      | ~alt + shift - wasd~          |
+   | Decrease regin size                       | ~ctrl + shift - wasd~         |
+   | Equalize size of windows                  | ~alt + shift - 0~             |
+   |-------------------------------------------+-------------------------------|
+   | Set insertion point for focused container | ~alt + ctrl - jkl;x~          |
+   |-------------------------------------------+-------------------------------|
+   | Rotate tree 90                            | ~alt + ctrl - r~              |
+   | Mirror tree y-axis                        | ~alt + ctrl - y~              |
+   | Mirror tree x-axis                        | ~alt + ctrl - x~              |
+   |-------------------------------------------+-------------------------------|
+   | Toggle desktop offset                     | ~alt + ctrl - a~              |
+   | Toggle window fullscreen                  | ~alt + ctrl - f~              |
+   | Toggle window native fullscreen           | ~alt + shift - f~             |
+   | Toggle window parent zoom                 | ~alt + cmd - d~               |
+   | Toggle window split type                  | ~alt + shift - e~             |
+   | Toggle window fade                        | ~alt + shift - w~             |
+   | Toggle window float                       | ~alt + cmd - t~               |
+   | Toggle sticky                             | ~alt + cmd - s~               |
+   | Float next window to be tiled             | ~alt + shift - t~             |
+   | Toggle sticky, float and resize           | ~alt + shift + p~             |
+   |-------------------------------------------+-------------------------------|
+   | Change layout desktop - bsp               | ~cmd + shift - e~             |
+   | Change layour desktop - monocle           | ~cmd + shift - w~             |
+   | Change layout desktop - float             | ~cmd + shift - d~             |
+   |-------------------------------------------+-------------------------------|
+   | Make floating window fill screen          | ~alt + shift - up~            |
+   | Make floating window fill left            | ~alt + shift - left~          |
+   | Make floating window fill right           | ~alt + shift - right~         |
+   |-------------------------------------------+-------------------------------|
+
