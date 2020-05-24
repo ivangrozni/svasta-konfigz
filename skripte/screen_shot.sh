@@ -19,15 +19,7 @@ scrshot_create() {
         echo "Canceled."
     elif [ -f $SC_FILENAME ]
     then
-        zenity --question --text "Filename $SC_FILENAME already exists. Overwrite it?"
-        echo "overwrite: $SC_OVRWRITE last output: $?"
-        if [ $? -eq 1 ]
-        then
-            #rerun this function
-            scrshot_create
-        else
-            import $SC_FILENAME
-        fi
+	(zenity --question --text "Filename $SC_FILENAME already exists. Overwrite it?") && import $SC_FILENAME || scrshot_create
     else
         import $SC_FILENAME
     fi
